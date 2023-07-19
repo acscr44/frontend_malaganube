@@ -1,0 +1,75 @@
+{{titulo}}
+<br>
+<div class="form-check">
+    <input class="form-check-input" value="sin" type="radio" name="prefijo" id="sin" checked>
+    <label class="form-check-label" for="sin">
+      Sin letra (dni español)
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" title="selx" value="0" type="radio" name="prefijo" id="x" >
+    <label class="form-check-label" for="x">
+      X
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" title="sely" value="1" type="radio" name="prefijo" id="y" >
+    <label class="form-check-label" for="y">
+      Y
+    </label>
+  </div>
+  <div class="form-check">
+    <input class="form-check-input" title="selz" value="2" type="radio" name="prefijo" id="z" >
+    <label class="form-check-label" for="z">
+      Z
+    </label>
+  </div>
+
+  <div class="input-group mb-3">
+    <span class="input-group-text" id="basic-addon1">DNI</span>
+    <input type="number"  class="form-control" placeholder="Meta su dni" [(ngModel)]="numdni">
+  </div>
+
+  <button  class="btn btn-primary" (click)="calcularLetra()">Calcular Letra</button>
+  <br>
+  
+    <span *ngIf="letra!=''"> Su letra es {{letra}}</span>
+
+
+    <table *ngIf="listaDnis.length>0" class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">PREFIJO</th>
+            <th scope="col">NUMERO</th>
+            <th scope="col">LETRA</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!--aquí tengo que mostrar mi lista d dnis :)-->
+            <tr *ngFor="let dniaux of listaDnis">
+                <th scope="row">{{dniaux.prefijo}}</th>
+                <td>{{dniaux.numero}}</td>
+                <td>{{dniaux.letra}}</td>
+        </tbody>
+      </table>
+<!--
+      <br>
+      <table *ngIf="listaDnisExt.length>0" class="table">
+        <thead class="thead-light"></thead>
+          <tr>
+            <th scope="col">PREFIJO</th>
+            <th scope="col">NUMERO</th>
+            <th scope="col">LETRA</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dniextaux of listaDnisExt">
+                <th scope="row">{{dniextaux.prefijo}}</th>
+                <td>{{dniextaux.numero}}</td>
+                <td>{{dniextaux.letra}}</td>
+        </tbody>
+      </table>
+    -->
+
+    <button  *ngIf="listaDnis.length>0" class="btn btn-secondary" (click)="ordenarPorNumero()">Ordena por Número</button>  
+    <button  *ngIf="listaDnis.length>0" class="btn btn-secondary" (click)="ordenarPorLetra()">Ordena por Letra</button>  

@@ -1,0 +1,17 @@
+<p>basicos-ng works!</p>
+
+<div class="form-group">
+    <br>
+    <label class="m-3" for="idtexto">Introduzca una cadena</label>
+    <input class="m-3" type="text" id="idtexto" [(ngModel)]="texto">
+    <button class="btn btn-primary"  (click)="comprobarTexto()">PROBAR</button>
+    <!-- Tipo de comunicación: event binding (click)="comprobarTexto()" -->
+    <br>
+    <span *ngIf="endtask==true"> Su letra es {{textoInvertido}}</span>
+    <br>
+    <!-- <button class="btn btn-primary" (click)="longitudCadena(texto)">Longitud del texto</button> -->
+    <span *ngIf="endtask==true"> La longitud de la cadena es {{longitudCadena(texto)}}</span>
+    <br>
+    <span *ngIf="endtask==true"> La longitud de la cadena es {{parImpar(texto)}}</span>
+
+</div>

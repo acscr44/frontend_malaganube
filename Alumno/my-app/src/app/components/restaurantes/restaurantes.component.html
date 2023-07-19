@@ -1,0 +1,23 @@
+<p>restaurantes works!</p>
+<button class="btn btn-success" routerLink="/restaurantes/formularioRestaurante">Crear Restaurante</button>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">BARRIO</th>
+        <th>Modificar Restaurante Borrado Restaurante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--aquí se muestra la lista de restaurantes -->
+        <tr *ngFor="let rest of lista_restaurantes">
+            <th scope="row">{{rest.id}}</th>
+            <td>{{rest.nombre}}</td>
+            <td>{{rest.barrio}}</td>
+            <td>
+                <a href="#" class="btn btn-info" (click)="borrarRestaurante()">Modificar</a>
+                <a href="#" class="btn btn-danger" (click)="borrarRestaurante()">Borrar</a>
+            </td>
+    </tbody>
+  </table>

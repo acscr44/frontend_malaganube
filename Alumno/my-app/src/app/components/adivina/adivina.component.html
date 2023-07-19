@@ -1,0 +1,13 @@
+{{titulo}}
+<br>
+<cd-timer format="intelli" #basicTimer></cd-timer>
+<div class="form-group">
+    <br>
+    <label class="m-3" for="idnum">Numero</label>
+    <input class="m-3" type="number" id="idnum" [(ngModel)]="numusuario">
+    <button class="btn btn-primary" (click)="comprobarIntento()">PROBAR</button>
+    <!-- Tipo de comunicación: event binding (click)="reset()" -->
+    <button *ngIf="finpartida" class="btn btn-warning my-5" (click)="reset()">Volver a jugar</button>
+</div>
+
+
