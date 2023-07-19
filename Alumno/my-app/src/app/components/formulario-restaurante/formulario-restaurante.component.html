@@ -1,5 +1,3 @@
-<p>formulario-restaurante works!</p>
-
 <!-- FORMULARIO PLANTILLA TEMPLATE FORMS -->
 <form #formulario_alumno="ngForm" (ngSubmit)="crearRestaurante()">
     <div class="form-group">
@@ -80,9 +78,12 @@
       <input type="text" #especialidad3="ngModel" [(ngModel)]="restaurante.especialidad3" class="form-control" id="especialidad3" name="especialidad3" placeholder="Especialidad 3" required>
       <!-- definimos una sección de error, que muestre el mensaje si el campo no se valida -->
       <br>
+      <label for="foto">Foto</label>
+      <input type="file" (change)="seleccionarFoto($event)" class="form-control" id="foto" name="foto">
+      <br>
     </div>
     <br>
-
+    <br>
 
     <!--<button type="submit" [disabled]="!formulario_alumno.valid" class="btn btn-primary">CREAR</button>-->
     <button type="submit" class="btn btn-primary">CREAR</button>

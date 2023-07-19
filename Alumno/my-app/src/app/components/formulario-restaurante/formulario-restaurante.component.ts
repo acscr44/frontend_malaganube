@@ -16,6 +16,10 @@ export class FormularioRestauranteComponent implements OnInit {
 
   barrios:Array<String>;
 
+
+  // Union type es un objeto de dos tipos, también se puede usar any.
+  foto_seleccionada!: File|null;
+
   // La inyección de dependencias se realiza en el Constructor: RestauranteService
   // El servicio Router me permite navegar programáticamente - no por Link -
   constructor(private restauranteService:RestauranteService, private servicioRutas:Router) { 
@@ -75,6 +79,30 @@ export class FormularioRestauranteComponent implements OnInit {
         
       });
       
-      
+    }
+
+    seleccionarFoto(evento: Event) {
+      console.log("foto cambiada");
+      //evento.target //éste es el input file
+      let input_file = evento.target as HTMLInputElement;
+  
+      if (input_file.files) {
+  
+  
+        this.foto_seleccionada = input_file.files[0];
+  
+        console.log("Nombre fichero sel = " + this.foto_seleccionada.name);
+        console.log("Tipo fichero sel = " + this.foto_seleccionada.type);
+  
+        //si es una imagen, perfecto "me la quedo"
+        if (this.foto_seleccionada.type.indexOf('image') >= 0) {
+          console.log("el usuario ha seleccionado una imagen");
+        } else {
+          console.log("el usuario NO ha seleccionado una imagen");
+          this.foto_seleccionada = null;
+          //si no, la elimino, "no me la quedo"
+        }
+      }
+  
     }
 }
