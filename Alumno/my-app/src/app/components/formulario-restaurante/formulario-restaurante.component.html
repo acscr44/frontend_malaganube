@@ -85,6 +85,14 @@
     <br>
     <br>
 
+<!--
+      // si fotoHashCode es distinto de nulo, cargamos la foto del restaurante (de forma no-dinámica)
+      <img *ngIf="restaurante.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{restaurante.id}}" class="card_img" alt="...">
+      // si fotoHashCode es nulo, cargamos la foto por defecto
+      <img *ngIf="!restaurante.fotoHashCode" src="/assets/imgrest.jpg" class="card_img" alt="...">
+-->
+
+
     <!--<button type="submit" [disabled]="!formulario_alumno.valid" class="btn btn-primary">CREAR</button>-->
     <button type="submit" class="btn btn-primary">CREAR</button>
   </form>

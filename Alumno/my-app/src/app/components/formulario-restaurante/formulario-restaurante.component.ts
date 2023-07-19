@@ -17,7 +17,8 @@ export class FormularioRestauranteComponent implements OnInit {
   barrios:Array<String>;
 
 
-  // Union type es un objeto de dos tipos, también se puede usar any.
+  // "Union type" es un objeto de dos tipos, también se puede usar any.
+  // https://www.typescriptlang.org/docs/handbook/unions-and-intersections.html
   foto_seleccionada!: File|null;
 
   // La inyección de dependencias se realiza en el Constructor: RestauranteService
@@ -65,21 +66,42 @@ export class FormularioRestauranteComponent implements OnInit {
         ${this.restaurante.especialidad3}
       `);
 
-    this.restauranteService.postRestaurante(this.restaurante).subscribe({
-      complete: () => console.log('Comunicación completada'),
-      error: (errorRx) => {
-        console.error(errorRx);
-          alert(`Error al insertar el restaurante`);
-        },
-        next: restauranteNuevo => {
-          alert(`Restaurante insertado correctamente con id ${restauranteNuevo.id}`);
-          // Automáticamente, tras el POST exitoso, redirijo al usuario al listado.
-          this.servicioRutas.navigateByUrl("/restaurantes");
-        }
+    if (this.foto_seleccionada != null) {
+      // llamar a postConFoto
+      this.restauranteService.postRestauranteConFoto(this.restaurante, this.foto_seleccionada).subscribe({
+        complete: () => console.log('Comunicación completada'),
+        error: (errorRx) => {
+          console.error(errorRx);
+            alert(`Error al insertar el restaurante`);
+          },
+          next: restauranteNuevo => {
+            alert(`Restaurante insertado correctamente con id ${restauranteNuevo.id}`);
+            // Automáticamente, tras el POST exitoso, redirijo al usuario al listado.
+            this.servicioRutas.navigateByUrl("/restaurantes");
+          }
+          
+        });
+    } else {
+      // llamamos a post normal
+      this.restauranteService.postRestaurante(this.restaurante).subscribe({
+        complete: () => console.log('Comunicación completada'),
+        error: (errorRx) => {
+          console.error(errorRx);
+            alert(`Error al insertar el restaurante`);
+          },
+          next: restauranteNuevo => {
+            alert(`Restaurante insertado correctamente con id ${restauranteNuevo.id}`);
+            // Automáticamente, tras el POST exitoso, redirijo al usuario al listado.
+            this.servicioRutas.navigateByUrl("/restaurantes");
+          }
+          
+        });
         
-      });
-      
+      }
     }
+
+
+
 
     seleccionarFoto(evento: Event) {
       console.log("foto cambiada");
