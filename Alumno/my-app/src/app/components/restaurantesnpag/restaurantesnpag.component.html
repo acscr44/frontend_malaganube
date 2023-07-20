@@ -1,0 +1,72 @@
+<h1 class="rest_titulo">Lista de Restaurantes - Málaga</h1>
+<button class="btn btn-success" routerLink="/restaurantes/formularioRestaurante">Crear Restaurante</button>
+<div class="container">
+    <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let rest of lista_restaurantes">
+        <div class="card rest_card">
+            <div class="card-body">
+                <img *ngIf="rest.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{ rest.id }}" class="card_logo" alt="...">
+                <img *ngIf="!rest.fotoHashCode" src="/assets/RestaurantAssets.png" class="card_logo" alt="...">
+                <div>
+                <h1 class="card_title rest_nombre">{{ rest.nombre }}</h1>
+                <p class="card_text rest_direccion">{{ rest.direccion }}</p>
+                <p class="card_text rest_barrio">{{ rest.barrio }}</p>
+                <a href="#" class="btn btn-warning rest_button">Entra en el restaurante</a>
+                <button class="btn btn-danger" (click)="borrarRestaurante()">Borrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Aquí va la paginación-->
+    
+    <mat-paginator [length]="totalRegistros"
+                [pageSize]="totalPorPagina"
+                [pageSizeOptions]="opcionesTamanio"
+                [pageIndex]="paginaActual"
+                aria-label="Select page"
+                showFirstLastButtons
+                (page)="paginar($event)">
+                
+    </mat-paginator>
+</div> 
+</div>
+  
+<br><br><br><br><br>
+<br><br><br><br><br>
+
+<div>
+  <button class="btn btn-success" routerLink="/restaurantes/formularioRestaurante">Crear Restaurante</button>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">BARRIO</th>
+        <th>Modificar Restaurante Borrado Restaurante</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!--aquí se muestra la lista de restaurantes -->
+        <tr *ngFor="let rest of lista_restaurantes">
+            <th scope="row">{{rest.id}}</th>
+            <td>{{rest.nombre}}</td>
+            <td>{{rest.barrio}}</td>
+            <td>
+              <img *ngIf="rest.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{rest.id}}" class="card_img" alt="...">
+              <img *ngIf="!rest.fotoHashCode" src="/assets/RestaurantAssets.png" alt="...">
+                <a href="#" class="btn btn-info" (click)="borrarRestaurante()">Modificar</a>
+                <a href="#" class="btn btn-danger" (click)="borrarRestaurante()">Borrar</a>
+            </td>
+    </tbody>
+  </table>
+      <!--Aquí va la paginación -->
+      <mat-paginator [length]="totalRegistros"
+      [pageSize]="totalPorPagina"
+      [pageSizeOptions]="opcionesTamanio"
+      [pageIndex]="paginaActual"
+      aria-label="Select page"
+      showFirstLastButtons
+      (page)="paginar($event)">
+      
+</mat-paginator>
+</div>
