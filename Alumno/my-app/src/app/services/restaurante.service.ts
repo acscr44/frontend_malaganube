@@ -19,7 +19,11 @@ export class RestauranteService {
   getListaRestaurantes():Observable<Array<Restaurante>>{
     return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_GET_RESTAURANTE);
   }
-  
+  //// El atributo params es un objeto de tipo HttpParams que permite añadir parámetros a la petición GET.
+  buscarRestaurante(terminoBusqueda:string):Observable<Array<Restaurante>>{
+    let parametros:HttpParams = new HttpParams().set('clave', terminoBusqueda);
+    return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_GET_RESTAURANTE+"/searchByAny", {params:parametros});
+  }
   ////
   postRestaurante (restaurante:Restaurante):Observable<Restaurante>{
     return this.httpClient.post<Restaurante>(

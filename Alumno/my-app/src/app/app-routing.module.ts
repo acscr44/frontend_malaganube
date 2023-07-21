@@ -8,6 +8,7 @@ import { APINorrisComponent } from './components/api-norris/api-norris.component
 import { RestaurantesComponent } from './components/restaurantes/restaurantes.component';
 import { FormularioRestauranteComponent } from './components/formulario-restaurante/formulario-restaurante.component';
 import { RestaurantesnpagComponent } from './components/restaurantesnpag/restaurantesnpag.component';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
 
 // en este array de rutas, tengo que tener una ruta path
 // asociado al componente.
@@ -19,7 +20,9 @@ const routes: Routes = [
   { path: 'API-norris', component: APINorrisComponent },
   { path: 'restaurantes', component: RestaurantesComponent },
   { path: 'restaurantes/formularioRestaurante', component: FormularioRestauranteComponent },
-  { path: 'restaurantesnpag', component: RestaurantesnpagComponent }
+  { path: 'restaurantesnpag', component: RestaurantesnpagComponent },
+  { path: 'busqueda', component: BusquedaComponent }
+  
 
 ];
 

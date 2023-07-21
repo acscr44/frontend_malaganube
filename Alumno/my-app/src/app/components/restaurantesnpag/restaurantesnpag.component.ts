@@ -63,7 +63,7 @@ export class RestaurantesnpagComponent implements OnInit {
             this.totalRegistros = paginaRx.totalElements;
 
           }
-      })
+      });
   }
 
 }

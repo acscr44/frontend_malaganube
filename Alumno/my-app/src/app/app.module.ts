@@ -16,6 +16,8 @@ import { FormularioRestauranteComponent } from './components/formulario-restaura
 import { RestaurantesnpagComponent } from './components/restaurantesnpag/restaurantesnpag.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { BusquedaComponent } from './components/busqueda/busqueda.component';
+import { MapaComponent } from './components/mapa/mapa.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     APINorrisComponent,
     RestaurantesComponent,
     FormularioRestauranteComponent,
-    RestaurantesnpagComponent
+    RestaurantesnpagComponent,
+    BusquedaComponent,
+    MapaComponent
   ],
   imports: [
     BrowserModule,
