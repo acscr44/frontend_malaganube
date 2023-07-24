@@ -8,6 +8,7 @@ import * as L from 'leaflet';
 })
 export class MapaComponent implements OnInit {
 
+  
   private map!:any;
 
   constructor() {
@@ -56,5 +57,7 @@ export class MapaComponent implements OnInit {
       radius: 50
     }).addTo(this.map);
   }  
+
+
 
 }

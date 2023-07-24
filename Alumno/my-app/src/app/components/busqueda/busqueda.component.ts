@@ -14,7 +14,8 @@ export class BusquedaComponent implements OnInit {
   @ViewChild('cajabusqueda') cajaInput!:ElementRef;  // ElementRef es un wrapper de elementos genéricos/etiquetas estandar de HTML.
   // Envoltorio de angular a los elementos/etiquetas nativas "wrapper".
   @ViewChild('mapahijo') mapa!:MapaComponent;
- 
+  
+  
   listaRestaurantes!:Array<Restaurante>;
   constructor(private restauranteService:RestauranteService) { }
  
@@ -61,6 +62,32 @@ export class BusquedaComponent implements OnInit {
   busqueda3(){}
   
   
+  encuentrame(){
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+    
+    if (navigator.geolocation)
+    {
+      console.log("tenemos acceso al API Geolocation");
+      navigator.geolocation.getCurrentPosition((pos)=>this.exito(pos), ()=>this.fracaso(), options);
+    }else{
+      console.log("NO tenemos acceso al API Geolocation");
+    }
 
+  }
+
+  exito(posicion:GeolocationPosition){
+    console.log("Se ha encontrado su posición " +  posicion);
+    console.log(`Latitud: ${posicion.coords.latitude}`);
+    console.log(`Longitud: ${posicion.coords.longitude}`);
+    this.mapa.dibujarPosicion(posicion.coords.latitude, posicion.coords.longitude);
+  }
+  fracaso(){
+    console.log("No se pudo obtener la posición");
+    alert("No es posible determinar su ubicación en este dispositivo.");
+  }
 
 }

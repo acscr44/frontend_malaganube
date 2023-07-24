@@ -16,3 +16,4 @@
 </ul>
 <a (click)="restauranteTocado(rest)" class="list-group-item list-group-item-action" *ngFor="let rest of listaRestaurantes">{{rest.nombre}} {{rest.barrio}} {{rest.especialidad1}} {{rest.especialidad2}} {{rest.especialidad3}}  <button class="btn btn-primary" (click)="restauranteTocado(rest)">Ver en mapa</button></a>
 <app-mapa #mapahijo></app-mapa>
+<button class="btn btn-primary" (click)="encuentrame()">ENCUÉNTRAME</button>
