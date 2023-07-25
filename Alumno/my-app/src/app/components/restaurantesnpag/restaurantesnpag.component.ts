@@ -19,6 +19,7 @@ export class RestaurantesnpagComponent implements OnInit {
   
   lista_restaurantes!:Array<Restaurante>;
 
+  ruta_servicio_foto:string = RestauranteService.URL_ACTUAL+"/obtenerFoto";
 
   totalRegistros:number = 0;
   totalPorPagina:number = 2;

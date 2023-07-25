@@ -5,7 +5,9 @@
     <div class="col-md-4 mb-4" *ngFor="let rest of lista_restaurantes">
         <div class="card rest_card">
             <div class="card-body">
-                <img *ngIf="rest.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{ rest.id }}" class="card_logo" alt="...">
+                <!-- Relativización de rutas -->
+                <!-- En modo local sería http://localhost:8081/restaurante/obtenerFoto/{{rest.id}}   -->
+                <img *ngIf="rest.fotoHashCode" src="{{ruta_servicio_foto}}/{{ rest.id }}" class="card_logo" alt="...">
                 <img *ngIf="!rest.fotoHashCode" src="/assets/RestaurantAssets.png" class="card_logo" alt="...">
                 <div>
                 <h1 class="card_title rest_nombre">{{ rest.nombre }}</h1>
@@ -52,7 +54,8 @@
             <td>{{rest.nombre}}</td>
             <td>{{rest.barrio}}</td>
             <td>
-              <img *ngIf="rest.fotoHashCode" src="http://localhost:8081/restaurante/obtenerFoto/{{rest.id}}" class="card_img" alt="...">
+              <!-- En modo local la ruta sería http://localhost:8081/restaurante/obtenerFoto/{{rest.id}} -->
+              <img *ngIf="rest.fotoHashCode" src="{{ruta_servicio_foto}}//{{rest.id}}" class="card_img" alt="...">
               <img *ngIf="!rest.fotoHashCode" src="/assets/RestaurantAssets.png" alt="...">
                 <a href="#" class="btn btn-info" (click)="borrarRestaurante()">Modificar</a>
                 <a href="#" class="btn btn-danger" (click)="borrarRestaurante()">Borrar</a>

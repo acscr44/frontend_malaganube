@@ -11,6 +11,8 @@ export class RestaurantesComponent implements OnInit{
   
   lista_restaurantes!:Array<Restaurante>;
 
+  ruta_servicio_foto:string = RestauranteService.URL_ACTUAL+"/obtenerFoto";
+
   constructor(private restauranteService:RestauranteService) { }
   
   ngOnInit(): void {

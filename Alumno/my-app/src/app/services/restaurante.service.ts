@@ -8,7 +8,11 @@ import { Restaurante } from '../models/restaurante';
 })
 export class RestauranteService {
 
-  static readonly URL_GET_RESTAURANTE:string = "http://localhost:8081/restaurante";
+  static readonly URL_RESTAURANTES_PROD:string = "restaurante";
+
+  static readonly URL_RESTAURANTES_TEST:string = "http://localhost:8081/restaurante";
+
+  static readonly URL_ACTUAL:string = RestauranteService.URL_RESTAURANTES_PROD;
 
   // Atributo Content-Type/MIME de la cabecera que identifica el contenido del body.
   cabeceras : HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
@@ -17,17 +21,17 @@ export class RestauranteService {
 
   ////
   getListaRestaurantes():Observable<Array<Restaurante>>{
-    return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_GET_RESTAURANTE);
+    return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_ACTUAL);
   }
   //// El atributo params es un objeto de tipo HttpParams que permite añadir parámetros a la petición GET.
   buscarRestaurante(terminoBusqueda:string):Observable<Array<Restaurante>>{
     let parametros:HttpParams = new HttpParams().set('clave', terminoBusqueda);
-    return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_GET_RESTAURANTE+"/searchByAny", {params:parametros});
+    return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_ACTUAL+"/searchByAny", {params:parametros});
   }
   ////
   postRestaurante (restaurante:Restaurante):Observable<Restaurante>{
     return this.httpClient.post<Restaurante>(
-                      RestauranteService.URL_GET_RESTAURANTE, 
+                      RestauranteService.URL_ACTUAL, 
                       restaurante, 
                       {headers:this.cabeceras});
   }
@@ -52,7 +56,7 @@ export class RestauranteService {
         formData.append('especialidad3', restaurante.especialidad3);
         formData.append('archivo', archivo);
     
-    return this.httpClient.post<Restaurante>(RestauranteService.URL_GET_RESTAURANTE+"/crear-con-foto", formData);
+    return this.httpClient.post<Restaurante>(RestauranteService.URL_ACTUAL+"/crear-con-foto", formData);
   }
 
   //// Aquí hacemos la petición GET 
@@ -61,6 +65,6 @@ export class RestauranteService {
   {
     let parametros:HttpParams = new HttpParams().set('page', page).set('size', size);
     
-    return this.httpClient.get<any>(RestauranteService.URL_GET_RESTAURANTE+"/pagina", {params:parametros})
+    return this.httpClient.get<any>(RestauranteService.URL_ACTUAL+"/pagina", {params:parametros})
   }
 }
