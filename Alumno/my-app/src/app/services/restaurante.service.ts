@@ -12,7 +12,7 @@ export class RestauranteService {
 
   static readonly URL_RESTAURANTES_TEST:string = "http://localhost:8081/restaurante";
 
-  static readonly URL_ACTUAL:string = RestauranteService.URL_RESTAURANTES_PROD;
+  static readonly URL_ACTUAL:string = RestauranteService.URL_RESTAURANTES_TEST;
 
   // Atributo Content-Type/MIME de la cabecera que identifica el contenido del body.
   cabeceras : HttpHeaders = new HttpHeaders({'Content-type': 'application/json'});
@@ -28,6 +28,15 @@ export class RestauranteService {
     let parametros:HttpParams = new HttpParams().set('clave', terminoBusqueda);
     return this.httpClient.get<Array<Restaurante>>(RestauranteService.URL_ACTUAL+"/searchByAny", {params:parametros});
   }
+
+  ////
+  deleteRestaurante(id:number): Observable<Restaurante>
+  {
+    return this.httpClient.delete<Restaurante>(
+                      RestauranteService.URL_ACTUAL+"/"+id);
+  }
+
+
   ////
   postRestaurante (restaurante:Restaurante):Observable<Restaurante>{
     return this.httpClient.post<Restaurante>(
@@ -57,6 +66,14 @@ export class RestauranteService {
         formData.append('archivo', archivo);
     
     return this.httpClient.post<Restaurante>(RestauranteService.URL_ACTUAL+"/crear-con-foto", formData);
+  }
+
+  ////
+  putRestaurante (restaurante:Restaurante):Observable<Restaurante>{
+    return this.httpClient.put<Restaurante>(
+                      RestauranteService.URL_ACTUAL+"/"+restaurante.id, 
+                      restaurante, 
+                      {headers:this.cabeceras});
   }
 
   //// Aquí hacemos la petición GET 

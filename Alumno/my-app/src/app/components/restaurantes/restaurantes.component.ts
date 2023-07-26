@@ -36,9 +36,37 @@ export class RestaurantesComponent implements OnInit{
 
   }
 
-  borrarRestaurante() {
+  borrarRestaurante(id:number) {
     //TODO: obtener el id del restaurante y hacer el delete.
     console.log("Quiere borrar el restaurante");
+    this.restauranteService.deleteRestaurante(id).subscribe({
+      complete: () => console.log('Comunicación completada'),
+      error: (errorRx) => {
+        console.error(errorRx);
+      },
+      next: (restauranteRx) => {
+        console.log('Restaurante borrado');
+        window.location.reload();
+      }
+    });
+
+  }
+
+
+  modificarRestaurante(restaurante:Restaurante) {
+    //TODO: obtener el id del restaurante y hacer la modificación.
+    console.log("Quiere modificar el restaurante");
+    this.restauranteService.putRestaurante(restaurante).subscribe({
+      complete: () => console.log('Comunicación completada'),
+      error: (errorRx) => {
+        console.error(errorRx);
+      },
+      next: (restauranteRx) => {
+        console.log('Restaurante modificado');
+        window.location.reload();
+      }
+    });
+
   }
 
 

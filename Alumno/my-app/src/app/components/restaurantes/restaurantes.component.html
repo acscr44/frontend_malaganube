@@ -18,8 +18,8 @@
               <!-- En modo local la ruta sería http://localhost:8081/restaurante/obtenerFoto/{{rest.id}} -->
               <img *ngIf="rest.fotoHashCode" src="{{ruta_servicio_foto}}/{{rest.id}}" class="card_img" alt="...">
               <img *ngIf="!rest.fotoHashCode" src="/assets/RestaurantAssets.png" alt="...">
-                <a href="#" class="btn btn-info" (click)="borrarRestaurante()">Modificar</a>
-                <a href="#" class="btn btn-danger" (click)="borrarRestaurante()">Borrar</a>
+                <a href="#" class="btn btn-info" (click)="modificarRestaurante(rest)">Modificar</a>
+                <a href="#" class="btn btn-danger" (click)="borrarRestaurante(rest.id)">Borrar</a>
             </td>
     </tbody>
   </table>
